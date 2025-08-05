@@ -1,0 +1,261 @@
+ git config --global user.name “[firstname lastname]”
+
+ git config --global user.email “[valid-email]
+
+ git init - initialize an existing directory as a Git repository
+
+ git clone [url] -  retrieve an entire repository from a hosted location via URL
+
+1a)
+Step 1. Initialize a new Git repository: $ git init project1 
+ 
+Step 2. Create a new file:cd project1
+                        gedit helloword.c
+ 
+Step 3. Add the file to the staging area: 
+Before adding to staging area:  $ git status 
+ 
+After adding to statging area: $ git add helloworld.c 
+ 
+Step 4: Commit the changes with a message : $ git commit -m "first comment" 
+Others commands:  
+To see changes made in file : $ git diff helloworld.c 
+ 
+After changes add helloworld.c to repo: 
+ 
+Final commit:  
+ 
+Check log on git: $git log 
+
+1b)
+
+Step 1: Create a new branch named “feature-branch”: $ git branch feature-branch 
+ 
+Alternatively,$ git checkout -b feature-branch 
+ 
+Step 2: Switch to the “master” branch :$ git checkout master 
+ 
+Step 3: Merge “feature-branch” into “master”: $ git merge feature-branch 
+ 
+Step 4: Resolve any conflicts (if needed) and commit the merge:
+$ git add 
+$ git commit -m "Merge feature-branch into master” 
+
+If you no longer need the “feature-branch,” you can delete it. $ git branch -d feature-branch.
+
+2a)
+Step 1: Check Current Branch - $ git branch
+
+Step 2: Make changes txt
+
+Step 3: Check Status (to confirm uncommitted changes) - $ git status
+
+Step 4: Stash the Changes - $ git stash save "Added remember me checkbox and a note"
+
+Step 5: List All Stashes - $ git stash list
+
+Step 6: View What Was Stashed (Optional) - $ git stash show stash@{0}
+
+Step 7: Switch to Another Branch - $ git checkout feature-branch
+
+Step 8: Apply the Stashed Changes - $ git stash apply
+
+Step 9:Remove Most Recent Stash:- $ git stash drop
+
+2b)
+$git clone <repository_url>
+
+3a) 
+Fetch and Rebase in Git: 
+Step 1: Creating new file in github : 
+ 
+Write some info in the file  
+Now something got updated in remote repository. 
+Step 2: Open Terminal / Git Bash and Check Your Current Branch: $git branch  
+Step 3: Let’s do git pull to fetch changes made in remote repo to local repo: $git pull origin main 
+Step 4: let’s check for the update local repo with ls Command  
+Step 5: Let’s do modify test.txt file locally 
+Step 6: Commit the changed file  $ git add .  $ git commit -m"new file commit"
+Step 7: Push content to remote repository : $git push  
+Kindly provide the authentication needed. 
+$git rebase origin your-branch 
+Push the rebased branch to the remote repository: 
+to the remote repository: $ git push origin your-branch --force 
+
+3b)
+: $ git merge feature-branch -m "Your custom commit message" 
+conflicts manually. After resolving conflicts, you can continue the merge process with: 
+$ git merge –continue 
+Alternatively, you can use an interactive merge to modify the commit message before 
+finalizing the merge: $ git merge feature-branch --no-ff –e
+
+4a)
+
+$git tag v1.0 <commit_hash> 
+Replace <commit_hash> with the actual hash of the commit for which you want to create the tag. 
+$git tag v1.0 HEAD 
+
+If you want to push the tag to a remote repository, you can use: 
+  $git push origin v1.0 
+
+4b)
+Steps 1:  View all branches: $git branch 
+Step 2: Switch to source-branch and note commit hashes: $git checkout –b <source-branch> 
+Step 3: Switch to the branch where you want to apply commits: $git checkout main 
+ 
+Step 4: git cherry-pick slave .. main
+
+5a) $git show <commit-id> 
+5b) $git log --author=“ “ --since="2025-04-01" --until="2025-5-31" 
+
+6a) $git log -n 5 
+ $git log -n 5 –oneline 
+$git revert abc123 
+ 
+6b)Step 1: 
+a)  $git config --global alias.st status 
+b) $git config --global alias.lg "log --oneline --graph" 
+Verify the aliases: $git config --global --list
+
+7a)
+Step 1: Create and Merge a Branch: 
+git init 
+echo "Initial" > file.txt 
+git add . 
+git commit -m "Initial commit" 
+ 
+# Create feature branch 
+git checkout -b feature 
+echo "Feature work" >> file.txt 
+git add . 
+git commit -m "Work on feature" 
+ 
+# Switch back and merge 
+git checkout main 
+git merge feature -m "Merge feature into main" 
+ 
+Step 2: Get the Merge Commit Hash: $git log --oneline 
+ 
+Step 3: Revert the Merge Commit: Use -m to specify the mainline parent: $git revert 
+m 1 f4d3c6b 
+
+7b)
+1. Create and switch to a branch:  
+$git checkout -b test-branch 
+$echo "Hello" > file.txt 
+$git add file.txt 
+$git commit -m "Added file.txt" 
+ 
+2. Switch to another branch and delete test-branch: 
+$git checkout main 
+$git branch -D test-branch 
+ 
+3. Recover with git reflog: $git reflog 
+ 
+4. Restore the branch: $git checkout -b test-branch 15065a3 
+
+8a) 1. Add several untracked files: Create a few untracked files for demonstration: 
+$touch temp1.txt temp2.log notes.md 
+$mkdir tempdir 
+$touch tempdir/file1.txt 
+Verify they're untracked: $git status 
+ $git clean –n 
+ 
+8b)Create a .zip Archive of a Branch:  
+Step1: Open Terminal or Command Prompt Navigate to your Git repository folder: 
+cd path\to\your\repository 
+Step 2: Run the Archive Command: $git archive --format=zip --output=main.zip main 
+ --format=zip: sets the archive format. 
+ --output=main.zip: names the output file. 
+ main: is the name of the branch. 
+Create a .tar Archive of a Branch 
+Step 1: Open Terminal or Command Prompt: cd path\to\your\repository 
+Step 2: Run the Archive Command: $git archive --format=tar --output=main.tar main 
+ 
+Create Archive of a Specific Commit  
+Step 1: Find the Commit Hash: $git log --oneline 
+ 
+Step 2: Create a .zip Archive of That Commit: $git archive --format=zip --output=commit.zip 
+abc1234
+
+
+
+10)
+Java –jar jenkins.war 
+Create a New Job 
+ Click "New Item" 
+ Enter job name 
+Select job type (e.g., Freestyle project, Pipeline) 
+ Click OK 
+Step 2: Configure Job 
+Step 2: Save and Build 
+ Click Save 
+ Use "Build Now" to trigger job 
+ 
+Step 1: Install Required Jenkins Plugins 
+1. Go to Manage Jenkins → Manage Plugins 
+2. Under Available or Installed tabs, ensure the following are installed: 
+o Git plugin 
+o GitHub plugin 
+o GitHub Integration Plugin 
+o GitHub Branch Source 
+o Pipeline (if using scripted pipeline) 
+ 
+ 
+Step 2: Add local git.exe file Jenkins 
+1. Go to Manage Jenkins → Manage Tool 
+ 
+ 
+To get the path for git : Go to CMD → type where git 
+ 
+Paste the path click on Apply and save 
+Create Credentials in Jenkins 
+Step 1. Go to: http://localhost:8080 (or your Jenkins server URL) > Login with your 
+credentials. 
+Step 2. Navigate to Credentials: In the left-hand panel, click on: Manage Jenkins → security 
+→ Credentials 
+ 
+Step 3. Choose Scope 
+ You’ll see: 
+o (global): Available to all jobs. 
+o Folder-specific (if you've created folders to organize jobs). 
+ Click on (global) → Add Credentials. 
+ 
+ 
+Step 4. On the left side, click Add Credentials. 
+ 
+Step 5. Fill in Credential Details: Choose the correct Kind based on what you need: 
+Kind Use Case 
+Username with password Git over HTTPS, DB login 
+Secret text API token, GitHub token 
+SSH Username with private key Git over SSH 
+Certificate TLS/SSL certificates 
+Secret file Any file Jenkins jobs need 
+Click OK. 
+ 
+Create the new job in Jenkins  
+Step 1:  Create a new Freestyle project in Jenkins named jenkins_git_project. 
+Step 2: In the Source Code Management (SCM) section: 
+ Select Git. 
+ Enter the GitHub repository URL: 
+Example: https://github.com/YourUsername/jenkins_git.git 
+ 
+ Add Git credentials 
+ 
+ Specify the branch to build (e.g., */main). 
+ 
+ Click on "Add" under Additional Behaviours and configure the following: 
+Checkout to a specific local sub-directory – Customize workspace structure. 
+ 
+ 
+ Save the job and run the build manually to test. 
+ 
+ Now go back to configure job, In the Build section, add a simple window batch 
+command such as: 
+python localfilepath\pythonfile 
+ 
+ Save the job and run the build manually to test.
+ 
+ 
+ 
+ 
